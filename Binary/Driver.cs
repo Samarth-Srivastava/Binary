@@ -7,16 +7,12 @@ namespace Binary
         public static bool ValidateStringInput(string str){
             bool flag = true;
 
-            if(string.IsNullOrEmpty(str)){
-                Console.WriteLine("String empty");
-                flag = false;
-            }
             if(str.Split(" ").Length > 1){
                 Console.WriteLine("String has space/s");
                 flag = false;
             }
             var regex = new Regex("^[0-1]{1,}$");
-            if(!regex.IsMatch(str)){
+            if(!regex.IsMatch(str) && str.Length > 0){
                 Console.WriteLine("String should only contain 0s and 1s");
                 flag = false;
             }
@@ -31,6 +27,14 @@ namespace Binary
             Console.WriteLine("Decimal to binary: Press 2");
             Console.WriteLine("Binary to Decimal: Press 3");
             Console.WriteLine("Power of 2: Press 4");
+            Console.WriteLine("Ones Complement: Press 5");
+            Console.WriteLine("Twos Complement: Press 6");
+            Console.WriteLine("Negative Number: Press 7");
+            Console.WriteLine("Difference 2 binary strings: Press 8");
+            Console.WriteLine("Single Numbers: Press 9");
+            Console.WriteLine("Check if i-th bit is set : Press 10");
+            Console.WriteLine("Check even : Press 11");
+            Console.WriteLine("Check odd : Press 12");
 
             string? input = Console.ReadLine();
             if(!string.IsNullOrEmpty(input)){
@@ -46,7 +50,31 @@ namespace Binary
                         break;
                     case "4":
                         CallCaluclatrPowerOf2();
-                        break;    
+                        break;
+                    case "5":
+                        CallOnesComplement();
+                        break;
+                    case "6":
+                        CallTwosComplement();
+                        break;
+                    case "7":
+                        CallNegativeNumber();
+                        break;
+                    case "8":
+                        CallDiff2BinaryStrings();
+                        break;
+                    case "9":
+                        CallSingleNumbers();
+                        break;
+                    case "10":
+                        CallCheckBit();
+                        break;
+                    case "11":
+                        CallCheckEven();
+                        break;
+                    case "12":
+                        CallCheckOdd();
+                        break;
                     default:
                         Console.Clear();
                         break;
@@ -80,7 +108,7 @@ namespace Binary
             Console.WriteLine("Enter a decimal number");
             int x = Convert.ToInt32(Console.ReadLine());
 
-            int pow = s.PowOf2(x);
+            double pow = s.PowOf2(x);
             Console.WriteLine(pow);
         }
 
@@ -95,6 +123,103 @@ namespace Binary
                 var addition = s.Add2BinaryStrings(str1, str2);
                 Console.WriteLine(addition);
             }
+        }
+
+        public void CallOnesComplement(){
+            Console.Clear();
+            Console.WriteLine("Enter a binary number");
+            string? str1 = Console.ReadLine();
+
+            if (Common.ValidateStringInput(str1)){
+                var addition = s.OnesComplement(str1);
+                Console.WriteLine(addition);
+            }
+        }
+
+        public void CallTwosComplement(){
+            Console.Clear();
+            Console.WriteLine("Enter a binary number");
+            string? str1 = Console.ReadLine();
+
+            if (Common.ValidateStringInput(str1)){
+                var addition = s.TwosComplement(str1);
+                Console.WriteLine(addition);
+            }
+        }
+
+        public void CallNegativeNumber(){
+            Console.Clear();
+            Console.WriteLine("Enter a decimal number");
+            int str1 = Convert.ToInt32(Console.ReadLine());
+
+            var addition = s.NegativeOfANumber(str1);
+            
+            Console.WriteLine(addition);
+        }
+
+        public void CallDiff2BinaryStrings(){
+            Console.Clear();
+            Console.WriteLine("Enter 2 binary numbers, 1 per line");
+            string? str1 = Console.ReadLine();
+            string? str2 = Console.ReadLine();
+
+            //validate input
+            if (Common.ValidateStringInput(str1) && Common.ValidateStringInput(str2)){
+                var addition = s.Diff2BinaryStrings(str1, str2);
+                Console.WriteLine(addition);
+            }
+        }
+
+        public void CallSingleNumbers(){
+            Console.Clear();
+            Console.WriteLine("Enter Integer Array with spaces in between");
+
+            string? line = Console.ReadLine();
+            string[] n_arr_str = string.IsNullOrEmpty(line) ? new string[0] : line.Split(' ');
+
+            int[] arr = new int[n_arr_str.Length];
+            for (int i = 0; i < n_arr_str.Length; i++)
+            {
+                arr[i] = Convert.ToInt32(n_arr_str[i]);
+            }
+
+           int[] singles = s.GetSingleNumber(arr, arr.Length);
+
+            Console.WriteLine("Single numbers are :");
+            for (int i = 0; i < singles.Length; i++)
+            {
+                Console.Write(Convert.ToInt32(singles[i]) + " ");
+            }
+        }
+
+        public void CallCheckBit(){
+            Console.Clear();
+            Console.WriteLine("Enter a number");
+            int N = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter number of bit to check");
+            int i = Convert.ToInt32(Console.ReadLine());
+
+            bool a = s.Is_Ith_Bit_Set(N, i);
+            Console.WriteLine(a);
+        }
+
+         public void CallCheckEven(){
+            Console.Clear();
+            Console.WriteLine("Enter a number");
+            int N = Convert.ToInt32(Console.ReadLine());
+
+            bool a = s.isEven(N);
+            Console.WriteLine(a);
+        }
+
+        public void CallCheckOdd(){
+            Console.Clear();
+            Console.WriteLine("Enter a number");
+            int N = Convert.ToInt32(Console.ReadLine());
+
+            bool a = s.isOdd(N);
+            Console.WriteLine(a);
         }
     }
 }
