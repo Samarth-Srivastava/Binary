@@ -171,18 +171,66 @@ namespace Binary{
 
 		public int Set_Ith_Bit(int N, int i){
 			// Approach 1:
-			bool a = Is_Ith_Bit_Set(N, i);
-			if(a){
-				return N;
-			}
-			else{
-				return N + (1 << i);
-			}
+			// bool a = Is_Ith_Bit_Set(N, i);
+			// if(a){
+			// 	return N;
+			// }
+			// else{
+			// 	return N + (1 << i);
+			// }
 			// Approach 2
-			/* if we do OR operation, we don;t need to check if ith bit is already set
+			/* if we do OR operation, we don't need to check if ith bit is already set
 			as an OR operation for 1 and 1 will give 1
 			*/
-			// return N | (1 << i);
+			return N | (1 << i);
 		}
+
+		public long UnSet_Ith_Bit(long N, int i){
+			long a = 1 << i;
+			long b = ~a;
+			long c = N & b;
+			return c;
+		}
+
+		public int CountNumberOfSetBits(int N){
+			int count= 0;
+			while(N > 0){
+				if((N & 1) == 1){
+					count++;
+				}
+				N = N >> 1;
+			}
+			return count;
+		}
+
+		public int[] BitWiseOperations(int A, int B){
+			int[] arr = new int[5];
+			arr[0] = A & B;
+			arr[1] = A | B;
+			arr[2] = A ^ B;
+			arr[3] = ~A;  
+			arr[4] = ~B;
+			return arr;
+		}
+
+		/*doing AND operation for any N with N-1 unsets the right most set bit
+		if N is a power of 2 => N & N-1 is 0, as there is 1 set bit in N
+		*/
+
+		/*to get x set bits, (1 << x)-1
+		*/
+
+		public int findMod(string A, int B) {
+			int N = A.Length;
+			int sum = 0;
+			int exp = 1;
+			for(int i = N-1; i >= 0; i--){
+				int digit = Int32.Parse(A[i].ToString());
+				sum += (digit%B)*(exp%B);
+				sum = sum%B;
+				exp = (exp*10)%B;
+			}
+			return sum;
+    	}
 	}
 }

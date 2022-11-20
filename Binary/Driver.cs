@@ -35,6 +35,10 @@ namespace Binary
             Console.WriteLine("Check if i-th bit is set : Press 10");
             Console.WriteLine("Check even : Press 11");
             Console.WriteLine("Check odd : Press 12");
+            Console.WriteLine("Bitwise Operations on 2 numbers : Press 13");
+            Console.WriteLine("Set Ith Bit : Press 14");
+            Console.WriteLine("UnSet Ith Bit : Press 15");
+            Console.WriteLine("Find Mod : Press 16");
 
             string? input = Console.ReadLine();
             if(!string.IsNullOrEmpty(input)){
@@ -74,6 +78,18 @@ namespace Binary
                         break;
                     case "12":
                         CallCheckOdd();
+                        break;
+                    case "13":
+                        CallBitWise();
+                        break;
+                    case "14":
+                        CallSetBit();
+                        break;
+                    case "15":
+                        CallUnSetBit();
+                        break;
+                    case "16":
+                        CallFindMod();
                         break;
                     default:
                         Console.Clear();
@@ -219,6 +235,55 @@ namespace Binary
             int N = Convert.ToInt32(Console.ReadLine());
 
             bool a = s.isOdd(N);
+            Console.WriteLine(a);
+        }
+
+        public void CallBitWise(){
+            Console.Clear();
+            Console.WriteLine("Enter two numbers, 1 per line");
+            int A = Convert.ToInt32(Console.ReadLine());
+            int B = Convert.ToInt32(Console.ReadLine());
+
+            int[] arr = s.BitWiseOperations(A, B);
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+        }
+    
+        public void CallSetBit(){
+            Console.Clear();
+            Console.WriteLine("Enter a number");
+            int N = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter number of bit to check");
+            int i = Convert.ToInt32(Console.ReadLine());
+
+            int a = s.Set_Ith_Bit(N, i);
+            Console.WriteLine(a);
+        }
+
+        public void CallUnSetBit(){
+            Console.Clear();
+            Console.WriteLine("Enter a number");
+            int N = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter number of bit to check");
+            int i = Convert.ToInt32(Console.ReadLine());
+
+            long a = s.UnSet_Ith_Bit(N, i);
+            Console.WriteLine(a);
+        }
+
+        public void CallFindMod(){
+            Console.Clear();
+            Console.WriteLine("Enter any number");
+            string A = Console.ReadLine();
+
+            Console.WriteLine("Enter divisor");
+            int B = Convert.ToInt32(Console.ReadLine());
+
+            int a = s.findMod(A, B);
             Console.WriteLine(a);
         }
     }
