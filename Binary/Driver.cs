@@ -39,6 +39,7 @@ namespace Binary
             Console.WriteLine("Set Ith Bit : Press 14");
             Console.WriteLine("UnSet Ith Bit : Press 15");
             Console.WriteLine("Find Mod : Press 16");
+            Console.WriteLine("Find Majority Element : Press 17");
 
             string? input = Console.ReadLine();
             if(!string.IsNullOrEmpty(input)){
@@ -90,6 +91,9 @@ namespace Binary
                         break;
                     case "16":
                         CallFindMod();
+                        break;
+                    case "17":
+                        CallMaojorityElement();
                         break;
                     default:
                         Console.Clear();
@@ -285,6 +289,23 @@ namespace Binary
 
             int a = s.findMod(A, B);
             Console.WriteLine(a);
+        }
+
+        public void CallMaojorityElement(){
+            Console.Clear();
+            Console.WriteLine("Enter Integer Array with spaces in between");
+
+            string? line = Console.ReadLine();
+            string[] n_arr_str = string.IsNullOrEmpty(line) ? new string[0] : line.Split(' ');
+
+            int[] arr = new int[n_arr_str.Length];
+            for (int i = 0; i < n_arr_str.Length; i++)
+            {
+                arr[i] = Convert.ToInt32(n_arr_str[i]);
+            }
+
+            int maj = s.MajorityElement(arr, arr.Length);
+            Console.WriteLine(maj == -1 ? "No Majority element found" : "Majority Element is : " + maj);
         }
     }
 }

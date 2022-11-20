@@ -232,5 +232,33 @@ namespace Binary{
 			}
 			return sum;
     	}
+	
+		public int MajorityElement(int[] arr, int N){
+			int ele = arr[0];
+			int freq = 1;
+			for (int i = 0; i < N; i++)
+			{
+				if(freq == 0){
+					ele = arr[i];
+					freq = 1;
+				}
+				else if(ele != arr[i]){
+					freq--;
+				}
+				else{
+					freq++;
+				}
+			}
+			int count = 0;
+			for (int i = 0; i < N; i++){
+				if(arr[i] ==  ele){
+					count++;
+				}
+			}
+			if(count*2 > N){
+				return ele;
+			}
+			return -1;
+		}
 	}
 }
