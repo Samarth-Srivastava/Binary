@@ -221,22 +221,27 @@ namespace Binary{
 		*/
 
 		public int findMod(string A, int B) {
+			bool isANegative = A[0] == '-';
 			int N = A.Length;
+			int indexOfFirstDigit = isANegative ? 1 : 0;
 			int sum = 0;
 			int exp = 1;
-			for(int i = N-1; i >= 0; i--){
+			for(int i = N-1; i >= indexOfFirstDigit; i--){
 				int digit = Int32.Parse(A[i].ToString());
 				sum += (digit%B)*(exp%B);
 				sum = sum%B;
 				exp = (exp*10)%B;
 			}
+			if(isANegative){
+				sum = (((-1)*sum)+B)%B;
+			}
 			return sum;
     	}
-	
+
 		public int MajorityElement(int[] arr, int N){
 			int ele = arr[0];
 			int freq = 1;
-			for (int i = 0; i < N; i++)
+			for (int i = 1; i < N; i++)
 			{
 				if(freq == 0){
 					ele = arr[i];
@@ -261,4 +266,9 @@ namespace Binary{
 			return -1;
 		}
 	}
+
+	/* for a given number, to find the nearest power of 2 which is less or equal to the given number
+		is using a while loop while given number is greater than 0 and increase a counter by which 
+		right shift the given number, that number is the nearest power of 2.
+	*/
 }
