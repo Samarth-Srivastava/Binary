@@ -40,6 +40,8 @@ namespace Binary
             Console.WriteLine("UnSet Ith Bit : Press 15");
             Console.WriteLine("Find Mod : Press 16");
             Console.WriteLine("Find Majority Element : Press 17");
+            Console.WriteLine("To upper : Press 18");
+            Console.WriteLine("Reverse a sentence : Press 19");
 
             string? input = Console.ReadLine();
             if(!string.IsNullOrEmpty(input)){
@@ -94,6 +96,12 @@ namespace Binary
                         break;
                     case "17":
                         CallMaojorityElement();
+                        break;
+                    case "18":
+                        CallToUpper();
+                        break;
+                    case "19":
+                        CallReverseASentence();
                         break;
                     default:
                         Console.Clear();
@@ -306,6 +314,23 @@ namespace Binary
 
             int maj = s.MajorityElement(arr, arr.Length);
             Console.WriteLine(maj == -1 ? "No Majority element found" : "Majority Element is : " + maj);
+        }
+
+        public void CallToUpper(){
+            Console.Clear();
+            Console.WriteLine("Enter a string");
+
+            string? line = Console.ReadLine();
+            Console.WriteLine(line.ToLowerCustom());
+        }
+
+        public void CallReverseASentence(){
+            Console.Clear();
+            Console.WriteLine("Enter a sentence");
+
+            string? line = Console.ReadLine();
+            string sd = s.ReverseASentence(line);
+            Console.WriteLine(sd);
         }
     }
 }

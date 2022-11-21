@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Binary{
 	public class Solution{
 
@@ -265,10 +267,73 @@ namespace Binary{
 			}
 			return -1;
 		}
-	}
 
-	/* for a given number, to find the nearest power of 2 which is less or equal to the given number
+		/* for a given number, to find the nearest power of 2 which is less or equal to the given number
 		is using a while loop while given number is greater than 0 and increase a counter by which 
 		right shift the given number, that number is the nearest power of 2.
-	*/
+		*/
+
+		/* difference between capital and small letters is 5th bit.
+			it is 0 fro capital letters and 1 for small letters
+		*/
+
+		public string ReverseAString(string str, int s, int e){
+			StringBuilder st = new StringBuilder(str);
+			while(s < e){
+				char temp = str[e];
+				st[e] = str[s];
+				st[s] = temp;
+				s++;
+				e--;
+			}
+			return st.ToString();
+		}
+
+		public string ReverseASentence(string sentence){
+			/*idea is to reverse the whole string and then reverse individual words*/
+
+			string reversedSentenceWithReversedWords = ReverseAString(sentence, 0, sentence.Length-1);
+
+			string[] reversedWords = reversedSentenceWithReversedWords.Split(' ');
+			string reversedSentence = "";
+			foreach (string item in reversedWords)
+			{
+				string word = ReverseAString(item, 0, item.Length-1);
+				reversedSentence += (word + ' ');
+			}
+			return reversedSentence.Trim();
+		}
+	}
+
+	public static class CommonExtensions{
+		public static string ToUpperCustom(this string str){
+			string s = "";
+			for (int i = 0; i < str.Length; i++)
+			{
+				char temp = str[i];
+				if(str[i] >= 97 && str[i] <= 122){
+					int o = str[i]&(~32);
+					temp = Convert.ToChar(o);
+				}
+				s = s + temp;
+			}
+			return s;
+		}
+
+		public static string ToLowerCustom(this string str){
+			string s = "";
+			for (int i = 0; i < str.Length; i++)
+			{
+				char temp = str[i];
+				if(str[i] >= 65 && str[i] <= 90){
+					int o = str[i]|32;
+					temp = Convert.ToChar(o);
+				}
+				s = s + temp;
+			}
+			return s;
+		}
+	}
+
+	
 }
