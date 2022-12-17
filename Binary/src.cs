@@ -226,18 +226,18 @@ namespace Binary{
 			bool isANegative = A[0] == '-';
 			int N = A.Length;
 			int indexOfFirstDigit = isANegative ? 1 : 0;
-			int sum = 0;
-			int exp = 1;
+			long sum = 0;
+			long exp = 1;
 			for(int i = N-1; i >= indexOfFirstDigit; i--){
 				int digit = Int32.Parse(A[i].ToString());
-				sum += (digit%B)*(exp%B);
-				sum = sum%B;
-				exp = (exp*10)%B;
+				sum += 1L * (digit%B)*(exp%B);
+				sum = (int)(sum % B);
+				exp = (1L*exp*10)%B;
 			}
 			if(isANegative){
 				sum = (((-1)*sum)+B)%B;
 			}
-			return sum;
+			return (int)sum;
     	}
 
 		public int MajorityElement(int[] arr, int N){
