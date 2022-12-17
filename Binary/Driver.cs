@@ -42,6 +42,7 @@ namespace Binary
             Console.WriteLine("Find Majority Element : Press 17");
             Console.WriteLine("To upper : Press 18");
             Console.WriteLine("Reverse a sentence : Press 19");
+            Console.WriteLine("Unset B Bits from right : Press 20");
 
             string? input = Console.ReadLine();
             if(!string.IsNullOrEmpty(input)){
@@ -102,6 +103,9 @@ namespace Binary
                         break;
                     case "19":
                         CallReverseASentence();
+                        break;
+                    case "20":
+                        CallUnsetBBitsFromRight();
                         break;
                     default:
                         Console.Clear();
@@ -256,10 +260,10 @@ namespace Binary
             int A = Convert.ToInt32(Console.ReadLine());
             int B = Convert.ToInt32(Console.ReadLine());
 
-            int[] arr = s.BitWiseOperations(A, B);
-            for (int i = 0; i < arr.Length; i++)
+            List<(string, int)> arr = s.BitWiseOperations(A, B);
+            for (int i = 0; i < arr.Count; i++)
             {
-                Console.WriteLine(arr[i]);
+                Console.WriteLine(arr[i].Item1 + " " + arr[i].Item2);
             }
         }
     
@@ -272,6 +276,18 @@ namespace Binary
             int i = Convert.ToInt32(Console.ReadLine());
 
             int a = s.Set_Ith_Bit(N, i);
+            Console.WriteLine(a);
+        }
+
+        public void CallUnsetBBitsFromRight(){
+            Console.Clear();
+            Console.WriteLine("Enter a number");
+            long N = Convert.ToInt64(Console.ReadLine());
+
+            Console.WriteLine("Enter number of bits to unset");
+            int i = Convert.ToInt32(Console.ReadLine());
+
+            long a = s.UnsetBBitsFromRight(N, i);
             Console.WriteLine(a);
         }
 

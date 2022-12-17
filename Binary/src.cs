@@ -205,13 +205,13 @@ namespace Binary{
 			return count;
 		}
 
-		public int[] BitWiseOperations(int A, int B){
-			int[] arr = new int[5];
-			arr[0] = A & B;
-			arr[1] = A | B;
-			arr[2] = A ^ B;
-			arr[3] = ~A;  
-			arr[4] = ~B;
+		public List<(string, int)> BitWiseOperations(int A, int B){
+			List<(string, int)> arr = new List<(string, int)>();
+			arr.Add(new ("&", A&B));
+			arr.Add(new ("|", A|B));
+			arr.Add(new ("^", A^B));
+			arr.Add(new ("~A", ~A));
+			arr.Add(new ("~B", ~B));
 			return arr;
 		}
 
@@ -302,6 +302,13 @@ namespace Binary{
 				reversedSentence += (word + ' ');
 			}
 			return reversedSentence.Trim();
+		}
+	
+		public long UnsetBBitsFromRight(long A, int B){
+			for(int i = 0; i < B; i++ ){
+				A = UnSet_Ith_Bit(A, i);
+			}
+			return A;
 		}
 	}
 
